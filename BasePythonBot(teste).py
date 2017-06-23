@@ -20,7 +20,7 @@ async def ping(ctx):
     await client.say("Pong!")
 
 @client.command(pass_context = True)
-async def inrole(ctx, *name):
+async def role(ctx, *name):
     name = ' '.join(name)
     message = ctx.message
     users = [x.name for x in message.server.members if name in [z.name for z in x.roles]]
@@ -31,6 +31,12 @@ async def inrole(ctx, *name):
     embed = discord.Embed(title = "User with the %s role (%s)"%(name, str(len(users))), description = seperator.join(users), color = 0xFFFFF)
     await client.delete_message(message)
     return await client.say(embed = embed)
+
+@client.command(pass_context = True)
+async def money():
+    gif = discord.Embed(title='money')
+    gif.set_image(url='https://babylon.naurunappula.com/org/c1/54/c154d8003d63c7ad/0/859201.gif')
+    await client.say(embed=gif)
 
 '''#command1
 @client.command(pass_context = True)
@@ -73,7 +79,7 @@ async def clear(ctx, number):
     async for x in client.logs_from(ctx.message.channel, limit = number):
         mgs.append(x)
     await client.delete_messages(mgs)
-     
+
 client.run("Token")
 
 
